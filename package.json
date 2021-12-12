@@ -7,7 +7,7 @@
     "dev": "cross-env NODE_ENV=development DEBUG=nodeapi:* nodemon",
     "initDB": "node ./transpiled/utils/initDB.js",
     "server": "node ./transpiled/bin/www",
-    "setup": "npm run initDB && npm run dev",
+    "setup": "npm i && npm run build && npm run initDB && npm run server",
     "start": "npm run dev"
   },
   "dependencies": {
