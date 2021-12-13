@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "cluster": "npm run build && node ./transpiled/bin/cluster",
     "build": "babel --delete-dir-on-start --out-dir transpiled server",
     "dev": "cross-env NODE_ENV=development DEBUG=nodeapi:* nodemon",
     "initDB": "node ./transpiled/utils/initDB.js",

@@ -5,13 +5,11 @@ import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import ejs from 'ejs'
 
+import APIadverts from './routes/api/adverts'
 import indexRouter from './routes/index'
 import advertsRouter from './routes/adverts'
 
-import APIadverts from './routes/api/adverts'
-
 import './lib/MongooseConnection'
-
 import { isAPIRequest } from './lib/utils'
 
 const app = express()
@@ -58,3 +56,5 @@ app.use(function (err, req, res, next) {
 })
 
 export default app
+
+//TODO Probar ngrok.com si sobra tiempo (Video 1 Avanzado. Min 32:33)
