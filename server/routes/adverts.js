@@ -15,6 +15,8 @@ router.get('/', async (req, res, next) => {
   // }
 
   //// res.json(numAdverts)
+
+  res.send('Aún en construcción')
 })
 
 export default router
