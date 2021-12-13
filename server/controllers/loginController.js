@@ -14,13 +14,16 @@ class loginController {
 
       // Buscar usuario por email
       const user = await User.findOne({ email })
-      if (!user || user.password !== password) {
+      let passw
+
+      if (user) passw = await user.checkPwd(password)
+
+      if (!user || !passw) {
         res.locals.error = res.__('Invalid credentials')
         res.render('login')
+        return
       }
 
-
-      // Si encuentro usuario redirijo a /private
       res.redirect('/private')
     } catch (error) {
       next(error)

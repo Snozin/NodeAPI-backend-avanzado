@@ -44,11 +44,11 @@ const initUsers = async () => {
   const result = await User.insertMany([
     {
       email: 'admin@example.com',
-      password: 1234,
+      password: await User.hashPwd('1234'),
     },
     {
       email: 'user@example.com',
-      password: 1234,
+      password: await User.hashPwd('3333'),
     },
   ])
   console.log(`Insertados ${result.length} usuarios.`)

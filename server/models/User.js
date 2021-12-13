@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
 
 const userSchema = mongoose.Schema(
   {
@@ -9,6 +10,14 @@ const userSchema = mongoose.Schema(
     collection: 'Users',
   }
 )
+
+userSchema.statics.hashPwd = function (plainTextPwd) {
+  return bcrypt.hash(plainTextPwd, 9)
+}
+
+userSchema.methods.checkPwd = function(plainTextPwd) {
+  return bcrypt.compare(plainTextPwd, this.password)
+}
 
 const User = mongoose.model('User', userSchema)
 
