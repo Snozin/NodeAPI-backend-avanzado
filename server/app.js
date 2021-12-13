@@ -43,6 +43,7 @@ app.use('/change-locale', changeLocale)
 // Usando controladores
 const loginController = new LoginController()
 app.get('/login', loginController.index)
+app.post('/login', loginController.post)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

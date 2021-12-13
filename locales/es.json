@@ -24,5 +24,6 @@
 	"Password": "Contraseña",
 	"Submit": "Enviar",
 	"Remember me": "Recuérdame",
-	"Private page": "Página privada"
+	"Private page": "Página privada",
+	"Invalid credentials": "Credenciales no válidas"
 }

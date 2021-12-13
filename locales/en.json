@@ -24,5 +24,6 @@
 	"Password": "Password",
 	"Submit": "Submit",
 	"Remember me": "Remember me",
-	"Private page": "Private page"
+	"Private page": "Private page",
+	"Invalid credentials": "Invalid credentials"
 }
