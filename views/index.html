@@ -6,13 +6,18 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <h2>Welcome to <%= title %></h2>
-    <h2>Anuncios Relevantes</h2>
+    <h1><%= prueba %></h1>
+    <h2><%= __('Welcome to') %> <%= title %></h2>
+    <h2><%= __('Featured Ads')%></h2>
+
+    <h2>0 <%= __n('Mouse', 0) %></h2>
+    <h2>1 <%= __n('Mouse', 1) %></h2>
+    <h2>2 <%= __n('Mouse', 2) %></h2>
     <ul>
       <% results.forEach( (item)=> { %>
       <li>
         <h3><%= item.name %></h3>
-        <p>Precio: <%= item.price %></p>
+        <p><%= __('Price')%>: <%= item.price %></p>
 
         <img src="/images/<%= item.photo %>" alt="Imagen de <%= item.name %>" />
         <p>

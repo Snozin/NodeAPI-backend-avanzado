@@ -1,3 +1,10 @@
 {
-	"Welcome to NodeAPI": "Bienvenido a NodeAPI"
+	"Welcome to": "Bienvenido a",
+	"Featured Ads": "Anuncios Destacados",
+	"Mouse": {
+		"one": "Ratón",
+		"other": "Ratones"
+	},
+	"Price": "Precio",
+	"thats an example": "Esto es un ejemplo"
 }

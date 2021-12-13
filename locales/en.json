@@ -1,3 +1,10 @@
 {
-	"Welcome to NodeAPI": "Welcome to NodeAPI"
+	"Welcome to": "Welcome to",
+	"Featured Ads": "Featured Ads",
+	"Mouse": {
+		"one": "Mouse",
+		"other": "Mouse"
+	},
+	"Price": "Price",
+	"thats an example": "thats an example"
 }

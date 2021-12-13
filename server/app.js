@@ -19,8 +19,8 @@ import i18n from './lib/i18nConfig'
 app.use(i18n.init)
 
 // Pruebechita i18n no más
-i18n.setLocale('es')
-console.log(i18n.__('Welcome to NodeAPI'))
+// i18n.setLocale('es')
+// console.log(i18n.__('Welcome to NodeAPI'))
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'))
