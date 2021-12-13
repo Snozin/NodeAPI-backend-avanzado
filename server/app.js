@@ -8,19 +8,13 @@ import ejs from 'ejs'
 import APIadverts from './routes/api/adverts'
 import indexRouter from './routes/index'
 import advertsRouter from './routes/adverts'
+import changeLocale from './routes/change-locale'
 
 import './lib/MongooseConnection'
 import { isAPIRequest } from './lib/utils'
+import i18n from './lib/i18nConfig'
 
 const app = express()
-
-// Cosass locas del i18n
-import i18n from './lib/i18nConfig'
-app.use(i18n.init)
-
-// Pruebechita i18n no más
-// i18n.setLocale('es')
-// console.log(i18n.__('Welcome to NodeAPI'))
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'))
@@ -36,8 +30,12 @@ app.use(express.static(path.join(__dirname, '../public')))
 // Rutas del API
 app.use('/api/adverts', APIadverts)
 
+// Inicio de i18n
+app.use(i18n.init)
+
 // Rutas de las vistass
 app.use('/', indexRouter)
+app.use('/change-locale', changeLocale)
 app.use('/adverts', advertsRouter)
 
 // catch 404 and forward to error handler

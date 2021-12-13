@@ -49,13 +49,34 @@
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-                ><%= __('Shop') %></a
-              >
+                ><%= __('Shop') %>
+              </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#!"><%= __('All Products') %></a></li>
                 <li><hr class="dropdown-divider" /></li>
                 <li><a class="dropdown-item" href="#!"><%= __('Popular Items') %></a></li>
                 <li><a class="dropdown-item" href="#!"><%= __('New Arrivals') %></a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a 
+                class="nav-link dropdown-toggle"
+                id="navbarDropdownLanguage"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <%= __('Language') %>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <% getLocales().forEach( lang => { %>
+                  <li>
+                    <a 
+                      class="dropdown-item toUpperCase"
+                      href="/change-locale/<%= lang %>">
+                      <%= lang %>
+                    </a>
+                  </li>
+                <% }) %>
               </ul>
             </li>
           </ul>

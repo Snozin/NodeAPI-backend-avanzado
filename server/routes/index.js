@@ -5,8 +5,8 @@ const router = express.Router()
 router.get('/', async (req, res, next) => {
   res.locals.title = 'NodeShop'
 
-// Ejemplo i18n 
-  res.locals.prueba = res.__('thats an example')
+  // Ejemplo i18n
+  // res.locals.prueba = res.__('thats an example')
 
   try {
     const { name, tags, sale, price, skip, limit, select, sort } = req.query
@@ -19,7 +19,6 @@ router.get('/', async (req, res, next) => {
 
     const adverts = await Advert.filterList(filter, skip, limit, select, sort)
 
-    console.log(adverts)
     res.render('index', { results: adverts })
   } catch (error) {
     next(error)

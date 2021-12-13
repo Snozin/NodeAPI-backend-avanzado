@@ -1,6 +1,6 @@
 import express from 'express'
-import path from 'path'
-import { Advert } from '../models'
+// import path from 'path'
+// import { Advert } from '../models'
 
 const router = express.Router()
 

@@ -5,6 +5,7 @@ const options = {
   locales: ['en', 'es'],
   directory: path.join(__dirname, '../../locales'),
   defaultLocale: 'en',
+  cookie: 'locale-lang',
   autoReload: true, // watch for changes in JSON files to reload locale - default: false
   syncFiles: true, // sync locale info across all files - default: false
 }
