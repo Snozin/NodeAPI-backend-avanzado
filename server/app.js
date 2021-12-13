@@ -5,11 +5,8 @@ import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import ejs from 'ejs'
 
-import APIadverts from './routes/api/adverts'
-import indexRouter from './routes/index'
-import loginRouter from './routes/login'
-import privateRouter from './routes/private'
-import changeLocale from './routes/change-locale'
+import { indexRouter, privateRouter, changeLocale, APIRouter } from './routes'
+import LoginController from './controllers/loginController'
 
 import './lib/MongooseConnection'
 import { isAPIRequest } from './lib/utils'
@@ -29,7 +26,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '../public')))
 
 // Rutas del API
-app.use('/api/adverts', APIadverts)
+app.use('/api/adverts', APIRouter)
 
 // Inicio de i18n
 app.use(i18n.init)
@@ -38,10 +35,14 @@ app.use(i18n.init)
 app.locals.title = 'NodeShop'
 
 // Rutas de las vistass
+
 app.use('/', indexRouter)
-app.use('/login', loginRouter)
 app.use('/private', privateRouter)
 app.use('/change-locale', changeLocale)
+
+// Usando controladores
+const loginController = new LoginController()
+app.get('/login', loginController.index)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
