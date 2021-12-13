@@ -6,5 +6,15 @@
 		"other": "Mouse"
 	},
 	"Price": "Price",
-	"thats an example": "thats an example"
+	"thats an example": "thats an example",
+	"Home": "Home",
+	"About": "About",
+	"Shop": "Shop",
+	"All Products": "All Products",
+	"Popular Items": "Popular Items",
+	"New Arrivals": "New Arrivals",
+	"Cart": "Cart",
+	"Your crazy useless stuff store": "Your crazy useless stuff store",
+	"Sale": "Sale",
+	"Add to cart": "Add to cart"
 }

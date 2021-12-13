@@ -6,5 +6,15 @@
 		"other": "Ratones"
 	},
 	"Price": "Precio",
-	"thats an example": "Esto es un ejemplo"
+	"thats an example": "Esto es un ejemplo",
+	"Home": "Home",
+	"About": "Nosotros",
+	"Shop": "Comprar",
+	"All Products": "Todos los Productos",
+	"Popular Items": "Artículos Populares",
+	"New Arrivals": "Novedades",
+	"Cart": "Carrito",
+	"Your crazy useless stuff store": "Tu tienda de locuras inútiles",
+	"Sale": "Oferta",
+	"Add to cart": "Añadir al carrito"
 }
