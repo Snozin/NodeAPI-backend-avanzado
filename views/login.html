@@ -1,0 +1,48 @@
+<% include header.html %>
+
+<section class="py-3">
+  <div class="container px-4 px-lg-5 mt-5">
+    <h1 class="display-4 fw-bolder">
+      <%= __('Login') %>
+    </h1>
+
+    <form>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">
+          <%= __('Email address') %>
+        </label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+        <div id="emailHelp" class="form-text">
+          <%= __('We will never share your email with anyone else') %>
+          <!-- We'll never share your email with anyone else. -->
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">
+          <%= __('Password') %>
+        </label>
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+        />
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+        <label class="form-check-label" for="exampleCheck1">
+          <%= __('Remember me') %>
+        </label>
+      </div>
+      <button type="submit" class="btn btn-outline-dark mt-auto">
+        <%= __('Submit') %>
+      </button>
+    </form>
+  </div>
+</section>
+
+<% include footer.html %>

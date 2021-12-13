@@ -3,7 +3,8 @@ import { Advert } from '../models'
 const router = express.Router()
 
 router.get('/', async (req, res, next) => {
-  res.locals.title = 'NodeShop'
+  res.locals.home = 'active'
+  res.locals.login = ''
 
   // Ejemplo i18n
   // res.locals.prueba = res.__('thats an example')

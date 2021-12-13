@@ -7,7 +7,8 @@ import ejs from 'ejs'
 
 import APIadverts from './routes/api/adverts'
 import indexRouter from './routes/index'
-import advertsRouter from './routes/adverts'
+import loginRouter from './routes/login'
+import privateRouter from './routes/private'
 import changeLocale from './routes/change-locale'
 
 import './lib/MongooseConnection'
@@ -33,10 +34,14 @@ app.use('/api/adverts', APIadverts)
 // Inicio de i18n
 app.use(i18n.init)
 
+// Titlo de la cabecera de las vistass
+app.locals.title = 'NodeShop'
+
 // Rutas de las vistass
 app.use('/', indexRouter)
+app.use('/login', loginRouter)
+app.use('/private', privateRouter)
 app.use('/change-locale', changeLocale)
-app.use('/adverts', advertsRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

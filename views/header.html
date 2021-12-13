@@ -8,7 +8,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Shop Homepage - Start Bootstrap Template</title>
+    <title>NodeShop Homepage</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
@@ -23,7 +23,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#!"><%= title %></a>
+        <a class="navbar-brand" href="/"><%= title %></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -38,7 +38,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#!"><%= __('Home') %></a>
+              <a class="nav-link <%= home %>" aria-current="page" href="/"><%= __('Home') %></a>
             </li>
             <li class="nav-item"><a class="nav-link" href="#!"><%= __('About') %></a></li>
             <li class="nav-item dropdown">
@@ -79,6 +79,7 @@
                 <% }) %>
               </ul>
             </li>
+            <li class="nav-item"><a class="nav-link <%= login %>" href="/login"><%= __('Login') %></a></li>
           </ul>
           <form class="d-flex">
             <button class="btn btn-outline-dark" type="submit">
@@ -90,15 +91,4 @@
         </div>
       </div>
     </nav>
-    <!-- Header-->
-    <header class="bg-dark py-5">
-      <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-          <h1 class="display-4 fw-bolder"><%= title%></h1>
-          <p class="lead fw-normal text-white-50 mb-0">
-            <%= __('Your crazy useless stuff store') %>
-            
-          </p>
-        </div>
-      </div>
-    </header>
+    
