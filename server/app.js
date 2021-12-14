@@ -41,6 +41,7 @@ app.use('/private', privateRouter)
 app.use('/change-locale', changeLocale)
 
 // Usando controladores
+// TODO: Proteger las rutas privadas
 const loginController = new LoginController()
 app.get('/login', loginController.index)
 app.post('/login', loginController.post)
