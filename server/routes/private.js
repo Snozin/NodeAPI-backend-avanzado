@@ -3,8 +3,10 @@ import express from 'express'
 const router = express.Router()
 
 router.get('/', async (req, res, next) => {
-  res.locals.home = ''
-  res.locals.login = 'active'
+  if (!req.session.isLogged) {
+    res.redirect('/login')
+    return
+  }
 
   res.render('private')
 })

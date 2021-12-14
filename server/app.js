@@ -12,6 +12,8 @@ import './lib/MongooseConnection'
 import { isAPIRequest } from './lib/utils'
 import i18n from './lib/i18nConfig'
 
+import session from 'express-session'
+
 const app = express()
 
 // view engine setup
@@ -34,14 +36,24 @@ app.use(i18n.init)
 // Titlo de la cabecera de las vistass
 app.locals.title = 'NodeShop'
 
-// Rutas de las vistass
+app.use(
+  session({
+    name: 'nodeshop-session',
+    secret: 'askjhdapsifuhasç!',
+    saveUninitialized: true,
+    resave: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 2, //La cookie caduca tras 2 días inactivo
+    },
+  })
+)
 
+// Rutas de las vistass
 app.use('/', indexRouter)
 app.use('/private', privateRouter)
 app.use('/change-locale', changeLocale)
 
 // Usando controladores
-// TODO: Proteger las rutas privadas
 const loginController = new LoginController()
 app.get('/login', loginController.index)
 app.post('/login', loginController.post)

@@ -16,12 +16,15 @@ class loginController {
       const user = await User.findOne({ email })
       let passw
 
-      if (user) passw = await user.checkPwd(password)
-
-      if (!user || !passw) {
+      if (!user || !await user.checkPwd(password)) {
         res.locals.error = res.__('Invalid credentials')
         res.render('login')
         return
+      }
+
+      // Añadir sesión al usuario
+      req.session.isLogged = {
+        _id: user._id
       }
 
       res.redirect('/private')
