@@ -40,7 +40,7 @@
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/"><%= __('Home') %></a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#!"><%= __('About') %></a></li>
+            <li class="nav-item"><a class="nav-link" href="private"><%= __('About') %></a></li>
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -79,7 +79,20 @@
                 <% }) %>
               </ul>
             </li>
-            <li class="nav-item"><a class="nav-link" href="/login"><%= __('Login') %></a></li>
+            <% if (session.isLogged) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">
+                <%= __('Logout') %>
+              </a>
+            </li>
+            <% } else { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">
+                  <%= __('Login') %>
+                </a>
+              </li>
+            <% }%>
+
           </ul>
           <form class="d-flex">
             <button class="btn btn-outline-dark" type="submit">

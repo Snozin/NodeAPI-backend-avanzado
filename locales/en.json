@@ -25,5 +25,6 @@
 	"Submit": "Submit",
 	"Remember me": "Remember me",
 	"Private page": "Private page",
-	"Invalid credentials": "Invalid credentials"
+	"Invalid credentials": "Invalid credentials",
+	"Logout": "Logout"
 }

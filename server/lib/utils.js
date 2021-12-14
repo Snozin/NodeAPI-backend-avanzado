@@ -17,3 +17,12 @@ export const getPriceValues = (price) => {
 
   return result
 }
+
+export const authRequired = (req, res, next) => {
+  if (!req.session.isLogged) {
+    res.redirect('/login')
+    return
+  }
+
+  next()
+}

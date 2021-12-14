@@ -25,5 +25,6 @@
 	"Submit": "Enviar",
 	"Remember me": "Recuérdame",
 	"Private page": "Página privada",
-	"Invalid credentials": "Credenciales no válidas"
+	"Invalid credentials": "Credenciales no válidas",
+	"Logout": "Cerrar sesión"
 }

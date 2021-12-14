@@ -1,3 +1,4 @@
+import dotenv from 'dotenv'
 import createError from 'http-errors'
 import express from 'express'
 import path from 'path'
@@ -9,10 +10,13 @@ import { indexRouter, privateRouter, changeLocale, APIRouter } from './routes'
 import LoginController from './controllers/loginController'
 
 import './lib/MongooseConnection'
-import { isAPIRequest } from './lib/utils'
+import { isAPIRequest, authRequired } from './lib/utils'
 import i18n from './lib/i18nConfig'
 
 import session from 'express-session'
+import MongoStore from 'connect-mongo'
+
+dotenv.config()
 
 const app = express()
 
@@ -36,6 +40,7 @@ app.use(i18n.init)
 // Titlo de la cabecera de las vistass
 app.locals.title = 'NodeShop'
 
+// Creación de la sesion
 app.use(
   session({
     name: 'nodeshop-session',
@@ -45,17 +50,27 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 2, //La cookie caduca tras 2 días inactivo
     },
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_CONNECTION_STRING
+    })
   })
 )
 
+// Insertar sesion en las vistas
+app.use((req, res, next) =>{
+  app.locals.session = req.session
+  next()
+})
+
 // Rutas de las vistass
 app.use('/', indexRouter)
-app.use('/private', privateRouter)
+app.use('/private', authRequired, privateRouter)
 app.use('/change-locale', changeLocale)
 
 // Usando controladores
 const loginController = new LoginController()
 app.get('/login', loginController.index)
+app.get('/logout', loginController.logout)
 app.post('/login', loginController.post)
 
 // catch 404 and forward to error handler
