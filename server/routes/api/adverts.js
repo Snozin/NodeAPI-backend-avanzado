@@ -1,11 +1,9 @@
 import express from 'express'
 import createError from 'http-errors'
 import { Advert } from '../../models'
-
 import { getPriceValues } from '../../lib/utils'
 
 const router = express.Router()
-
 const msg404 = 'No se encontró el elemento:'
 
 router.get('/tags', (req, res, next) => {

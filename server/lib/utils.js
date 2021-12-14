@@ -1,7 +1,10 @@
+import jwt from 'jsonwebtoken'
+
 export const isAPIRequest = (req) => {
   return req.url.startsWith('/api/')
 }
 
+// Función de comprobación de precios para /home y /api/adverts
 export const getPriceValues = (price) => {
   const prices = price.split('-')
   const [min, max] = prices
@@ -18,6 +21,7 @@ export const getPriceValues = (price) => {
   return result
 }
 
+// Middleware para comprobar que un usuario está logueado
 export const authRequired = (req, res, next) => {
   if (!req.session.isLogged) {
     res.redirect('/login')
@@ -25,4 +29,40 @@ export const authRequired = (req, res, next) => {
   }
 
   next()
+}
+
+// Middleware para autenticación con JWT
+export const jwtAuth = (req, res, next) => {
+  // Recoger el token de la cabecera o por query string
+  const token = req.get('Authorization') || req.query.token
+
+  // Comprobar que el token existe
+  if (!token) {
+    const error = new Error('No token provided')
+    error.status = 401
+    next(error)
+    return
+  }
+
+  // Comprobar que el token es válido
+  jwt.verify(token, process.env.JWT_SECRET, (error, payload) => {
+    if (error) {
+      error.status = 401
+      next(error)
+      return
+    }
+
+    // TODO
+    /**
+      payload puede ser guardado en una propiedad de req para usar
+     algún dato que necesitemos más adelante
+     * Ej:
+     req.authUserId = payload._id
+
+     Esta propiedad authUserId del objeto req se podrá usar en cualquier
+     middleware que sea llamado por la API después de autenticarse
+     */
+    console.log({ payload })
+    next()
+  })
 }

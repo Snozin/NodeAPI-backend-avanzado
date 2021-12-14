@@ -1,12 +1,7 @@
 import 'regenerator-runtime/runtime'
-import dotenv from 'dotenv'
-
-import readline from 'readline'
 import connection from '../lib/MongooseConnection'
-
 import { User, Advert } from '../models'
-
-dotenv.config()
+// import readline from 'readline'
 
 const main = async () => {
   await new Promise((resolve, reject) => {
@@ -48,7 +43,7 @@ const initUsers = async () => {
     },
     {
       email: 'user@example.com',
-      password: await User.hashPwd('3333'),
+      password: await User.hashPwd('1234'),
     },
   ])
   console.log(`Insertados ${result.length} usuarios.`)

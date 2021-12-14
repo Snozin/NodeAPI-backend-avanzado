@@ -1,6 +1,9 @@
 import { User } from '../models'
+import jwt from 'jsonwebtoken'
+
 
 class loginController {
+  // Métodos de las vistas
   index(req, res, next) {
     res.locals.error = ''
 
@@ -42,6 +45,35 @@ class loginController {
     }
 
     req.session.regenerate(callback)
+  }
+
+  // Métodos del API
+  async loginAPI(req, res, next) {
+    try {
+      const { email, password } = req.body
+
+      const user = await User.findOne({ email })
+
+      if (!user || !(await user.checkPwd(password))) {
+        res.json({ error: 'Invalid credentials' })
+        return
+      }
+      jwt.sign(
+        { _id: user._id },
+        process.env.JWT_SECRET,
+        { expiresIn: '2h' },
+        (error, jwtToken) => {
+          if (error) {
+            next(error)
+            return
+          }
+
+          res.json({ token: jwtToken })
+        }
+      )
+    } catch (error) {
+      next(error)
+    }
   }
 }
 

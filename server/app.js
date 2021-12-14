@@ -1,22 +1,16 @@
-import dotenv from 'dotenv'
 import createError from 'http-errors'
 import express from 'express'
 import path from 'path'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import ejs from 'ejs'
-
 import { indexRouter, privateRouter, changeLocale, APIRouter } from './routes'
 import LoginController from './controllers/loginController'
-
-import './lib/MongooseConnection'
-import { isAPIRequest, authRequired } from './lib/utils'
+import { isAPIRequest, authRequired, jwtAuth } from './lib/utils'
 import i18n from './lib/i18nConfig'
-
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
-
-dotenv.config()
+import './lib/MongooseConnection'
 
 const app = express()
 
@@ -32,7 +26,9 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '../public')))
 
 // Rutas del API
-app.use('/api/adverts', APIRouter)
+const loginController = new LoginController()
+app.use('/api/adverts', jwtAuth, APIRouter)
+app.post('/api/register', loginController.loginAPI)
 
 // Inicio de i18n
 app.use(i18n.init)
@@ -51,13 +47,13 @@ app.use(
       maxAge: 1000 * 60 * 60 * 24 * 2, //La cookie caduca tras 2 días inactivo
     },
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_CONNECTION_STRING
-    })
+      mongoUrl: process.env.MONGODB_CONNECTION_STRING,
+    }),
   })
 )
 
 // Insertar sesion en las vistas
-app.use((req, res, next) =>{
+app.use((req, res, next) => {
   app.locals.session = req.session
   next()
 })
@@ -68,7 +64,7 @@ app.use('/private', authRequired, privateRouter)
 app.use('/change-locale', changeLocale)
 
 // Usando controladores
-const loginController = new LoginController()
+
 app.get('/login', loginController.index)
 app.get('/logout', loginController.logout)
 app.post('/login', loginController.post)
