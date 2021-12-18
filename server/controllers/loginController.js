@@ -1,7 +1,6 @@
 import { User } from '../models'
 import jwt from 'jsonwebtoken'
 
-
 class loginController {
   // Métodos de las vistas
   index(req, res, next) {

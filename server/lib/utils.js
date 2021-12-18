@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+import Multer from 'multer'
 
 export const isAPIRequest = (req) => {
   return req.url.startsWith('/api/')
@@ -62,7 +63,7 @@ export const jwtAuth = (req, res, next) => {
      Esta propiedad authUserId del objeto req se podrá usar en cualquier
      middleware que sea llamado por la API después de autenticarse
      */
-    console.log({ payload })
+    // console.log({ payload })
     next()
   })
 }

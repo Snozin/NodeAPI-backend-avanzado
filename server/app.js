@@ -4,8 +4,10 @@ import path from 'path'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import ejs from 'ejs'
+import multer from 'multer'
 import { indexRouter, privateRouter, changeLocale, APIRouter } from './routes'
 import LoginController from './controllers/loginController'
+import APIController from './controllers/APIController'
 import { isAPIRequest, authRequired, jwtAuth } from './lib/utils'
 import i18n from './lib/i18nConfig'
 import session from 'express-session'
@@ -25,10 +27,20 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '../public')))
 
+// Creación de la carpeta de subidas
+const uploads = multer({ dest: './rawImgData' })
+
 // Rutas del API
 const loginController = new LoginController()
+const apiController = new APIController()
 app.use('/api/adverts', jwtAuth, APIRouter)
 app.post('/api/register', loginController.loginAPI)
+app.post(
+  '/api/thumbnail',
+  jwtAuth,
+  uploads.single('image'),
+  apiController.makeThumbnail
+)
 
 // Inicio de i18n
 app.use(i18n.init)
@@ -36,7 +48,7 @@ app.use(i18n.init)
 // Titlo de la cabecera de las vistass
 app.locals.title = 'NodeShop'
 
-// Creación de la sesion
+// Creación de sesion para website
 app.use(
   session({
     name: 'nodeshop-session',
@@ -64,7 +76,6 @@ app.use('/private', authRequired, privateRouter)
 app.use('/change-locale', changeLocale)
 
 // Usando controladores
-
 app.get('/login', loginController.index)
 app.get('/logout', loginController.logout)
 app.post('/login', loginController.post)
