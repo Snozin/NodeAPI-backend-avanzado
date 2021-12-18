@@ -42,9 +42,17 @@ Returns a filtered list. Admits filter by fields, sorting, skipping and limit re
 
 ## POST
 
+    /api/register
+
+Returns a JWT needed to access all other API routes
+
     /api/adverts
 
 Create a new advert
+
+    /api/thumbnail
+
+Returns an URL with the 100x100 thumbnail of the given image
 
 ## PUT
 
