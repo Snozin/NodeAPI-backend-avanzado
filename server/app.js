@@ -34,7 +34,7 @@ const uploads = multer({ dest: './rawImgData' })
 const loginController = new LoginController()
 const apiController = new APIController()
 app.use('/api/adverts', jwtAuth, APIRouter)
-app.post('/api/register', loginController.loginAPI)
+app.post('/api/register', apiController.loginAPI)
 app.post(
   '/api/thumbnail',
   jwtAuth,
