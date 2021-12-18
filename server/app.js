@@ -31,7 +31,6 @@ app.use(express.static(path.join(__dirname, '../public')))
 const uploads = multer({ dest: './rawImgData' })
 
 // Rutas del API
-const loginController = new LoginController()
 const apiController = new APIController()
 app.use('/api/adverts', jwtAuth, APIRouter)
 app.post('/api/register', apiController.loginAPI)
@@ -76,6 +75,7 @@ app.use('/private', authRequired, privateRouter)
 app.use('/change-locale', changeLocale)
 
 // Usando controladores
+const loginController = new LoginController()
 app.get('/login', loginController.index)
 app.get('/logout', loginController.logout)
 app.post('/login', loginController.post)
@@ -104,5 +104,3 @@ app.use(function (err, req, res, next) {
 })
 
 export default app
-
-//TODO Probar ngrok.com si sobra tiempo (Video 1 Avanzado. Min 32:33)

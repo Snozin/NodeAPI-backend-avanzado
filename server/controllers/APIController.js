@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 import { Requester } from 'cote'
 import '../lib/ThumbnailService'
 
+const requester = new Requester({ name: 'thumbnailRequester' })
 class APIController {
   // POST /api/register
   async loginAPI(req, res, next) {
@@ -34,8 +35,6 @@ class APIController {
 
   // POST /api/thumbnail
   makeThumbnail(req, res, next) {
-    const requester = new Requester({ name: 'thumbnailRequester' })
-
     const { path: image, originalname: name } = req.file
 
     requester.send({ type: 'makeThumbnail', image, name }, (result) => {

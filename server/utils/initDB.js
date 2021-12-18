@@ -1,18 +1,12 @@
 import 'regenerator-runtime/runtime'
 import connection from '../lib/MongooseConnection'
 import { User, Advert } from '../models'
-// import readline from 'readline'
 
 const main = async () => {
   await new Promise((resolve, reject) => {
     connection.once('open', resolve)
     connection.once('error', reject)
   })
-
-  // if (!(await confirm('¿Quires inicializar la BD? (yes/no)'))) {
-  //   console.log('Proceso abortado. No se ha borrado nada')
-  //   return process.exit(0)
-  // }
 
   await initAdverts()
   await initUsers()
@@ -48,21 +42,5 @@ const initUsers = async () => {
   ])
   console.log(`Insertados ${result.length} usuarios.`)
 }
-
-// const confirm = (questionText) =>
-//   new Promise((resolve, reject) => {
-//     const rl = readline.createInterface({
-//       input: process.stdin,
-//       output: process.stdout,
-//     })
-//     rl.question(questionText, (answer) => {
-//       rl.close()
-//       if (answer.toLowerCase() === 'yes') {
-//         resolve(true)
-//         return
-//       }
-//       resolve(false)
-//     })
-//   })
 
 main().catch((err) => console.log(err))

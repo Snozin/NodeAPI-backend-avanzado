@@ -66,7 +66,6 @@ if (cluster.isPrimary) {
       // port number
       return port
     }
-
     return false
   }
 
@@ -99,4 +98,3 @@ if (cluster.isPrimary) {
   }
 }
 
-// TODO mejorar que solo los workers arranquen la app

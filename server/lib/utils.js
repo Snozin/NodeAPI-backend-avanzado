@@ -52,18 +52,6 @@ export const jwtAuth = (req, res, next) => {
       next(error)
       return
     }
-
-    // TODO
-    /**
-      payload puede ser guardado en una propiedad de req para usar
-     algún dato que necesitemos más adelante
-     * Ej:
-     req.authUserId = payload._id
-
-     Esta propiedad authUserId del objeto req se podrá usar en cualquier
-     middleware que sea llamado por la API después de autenticarse
-     */
-    // console.log({ payload })
     next()
   })
 }
