@@ -1,8 +1,7 @@
 import { Responder } from 'cote'
 import Jimp from 'jimp'
-import path from 'path'
+import fs from 'fs'
 
-console.log('Iniciado responder:')
 const responder = new Responder({ name: 'ThumbnailService' })
 
 responder.on('makeThumbnail', async (req, done) => {
@@ -27,4 +26,8 @@ const resize = async (imageFile, imageName) => {
     })
 
   return true
+}
+
+const cleanUp = ()=> {
+  
 }

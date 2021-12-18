@@ -1,6 +1,6 @@
 import { Requester } from 'cote'
 import '../lib/ThumbnailService'
-import path from 'path'
+// import path from 'path'
 
 class APIController {
   // POST /api/thumbnail
